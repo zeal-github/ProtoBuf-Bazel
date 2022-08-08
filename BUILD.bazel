@@ -1,0 +1,27 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+
+cc_binary(
+    name = "write_message",
+    srcs = [
+        "write_message.cpp",
+    ],
+    deps = [
+        ":addressbook_cc_proto"
+    ],
+)
+
+cc_binary(
+    name = "list_addressbook",
+    srcs = ["list_addressbook.cpp"],
+    deps = [":addressbook_cc_proto"]
+)
+
+cc_proto_library(
+    name = "addressbook_cc_proto",
+    deps = [":addressbook"],
+)
+
+proto_library(
+    name = "addressbook",
+    srcs = ["addressbook.proto"]
+)
